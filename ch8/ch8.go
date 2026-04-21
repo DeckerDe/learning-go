@@ -25,8 +25,8 @@ type Element[T comparable] struct {
 }
 
 type LinkedList[T comparable] struct {
-	head Element[T]
-	last Element[T]
+	head *Element[T]
+	last *Element[T]
 }
 
 func (l *LinkedList[T]) Add(member T) {
@@ -34,7 +34,7 @@ func (l *LinkedList[T]) Add(member T) {
 		val: member,
 	}
 	l.last.next = newElement
-	l.last = *newElement
+	l.last = newElement
 }
 
 func (l *LinkedList[T]) Insert(member T, pos int) {
@@ -60,6 +60,7 @@ func (l LinkedList[T]) Index(member T) int {
 			return -1
 		}
 		pos++
+		currentElement = currentElement.next
 	}
 }
 

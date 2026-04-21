@@ -86,9 +86,11 @@ func TestPrintNum(t *testing.T) {
 }
 
 func TestLinkedListAdd(t *testing.T) {
+	element := &Element[int]{val: 1}
+
 	list := LinkedList[int]{
-		head: Element[int]{val: 1},
-		last: Element[int]{val: 1},
+		head: element,
+		last: element,
 	}
 
 	list.Add(2)
@@ -108,11 +110,11 @@ func TestLinkedListAdd(t *testing.T) {
 func TestLinkedListInsert(t *testing.T) {
 	node3 := &Element[int]{val: 3}
 	node2 := &Element[int]{val: 2, next: node3}
-	head := Element[int]{val: 1, next: node2}
+	head := &Element[int]{val: 1, next: node2}
 
 	list := LinkedList[int]{
 		head: head,
-		last: *node3,
+		last: node3,
 	}
 
 	list.Insert(99, 1)
@@ -134,11 +136,11 @@ func TestLinkedListInsert(t *testing.T) {
 func TestLinkedListIndexMissing(t *testing.T) {
 	node3 := &Element[int]{val: 3}
 	node2 := &Element[int]{val: 2, next: node3}
-	head := Element[int]{val: 1, next: node2}
+	head := &Element[int]{val: 1, next: node2}
 
 	list := LinkedList[int]{
 		head: head,
-		last: *node3,
+		last: node3,
 	}
 
 	if got := list.Index(42); got != -1 {
